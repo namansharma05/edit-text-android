@@ -11,6 +11,13 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:id="@+id/imageViewAndroid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="300dp"
@@ -40,5 +47,27 @@
         android:gravity="center"
         android:text="Result"
         android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textViewGender"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="What is your Gender?"
+        android:textColor="@color/black" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMale"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Male" />
+
+    <CheckBox
+        android:id="@+id/checkBoxFemale"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Female" />
 
 </LinearLayout>
