@@ -3,14 +3,18 @@ package com.example.edittexts
 import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore.Audio.Radio
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -22,11 +26,15 @@ class MainActivity : AppCompatActivity() {
 //    lateinit var genderText: TextView
 //    lateinit var male: CheckBox
 //    lateinit var female: CheckBox
-    lateinit var linearLayout: LinearLayout
+    lateinit var linearLayout: ConstraintLayout
     lateinit var green : RadioButton
     lateinit var blue : RadioButton
     lateinit var red: RadioButton
     lateinit var change: Button
+
+    lateinit var image: ImageView
+    lateinit var result : TextView
+    lateinit var toggleButton: ToggleButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +82,10 @@ class MainActivity : AppCompatActivity() {
         red = findViewById(R.id.radioButtonRed)
         change = findViewById(R.id.buttonChangeBackground)
 
+        image = findViewById(R.id.image)
+        result = findViewById(R.id.result)
+        toggleButton = findViewById(R.id.toggleButton)
+
         change.setOnClickListener {
             if(green.isChecked) {
                 linearLayout.setBackgroundColor(Color.GREEN)
@@ -81,6 +93,17 @@ class MainActivity : AppCompatActivity() {
                 linearLayout.setBackgroundColor(Color.BLUE)
             } else {
                 linearLayout.setBackgroundColor(Color.RED)
+            }
+        }
+
+
+        toggleButton.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if(isChecked) {
+                image.visibility = View.INVISIBLE
+                result.text = "The Image is Invisible."
+            } else {
+                image.visibility = View.VISIBLE
+                result.text = "The Image is Visible."
             }
         }
     }
