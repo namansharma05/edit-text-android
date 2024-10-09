@@ -11,9 +11,11 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ListView
 import android.widget.RadioButton
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +23,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(){
 
 //    lateinit var name: EditText
 //    lateinit var ok: Button
@@ -39,9 +41,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //    lateinit var result : TextView
 //    lateinit var toggleButton: ToggleButton
 
-    lateinit var spinner: Spinner
-    lateinit var countryResult : TextView
+//    lateinit var spinner: Spinner
+//    lateinit var countryResult : TextView
 
+    lateinit var listView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -113,27 +116,40 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //            }
 //        }
 
-        spinner = findViewById(R.id.spinnerCountry)
-        countryResult = findViewById(R.id.textViewResult)
+//        spinner = findViewById(R.id.spinnerCountry)
+//        countryResult = findViewById(R.id.textViewResult)
+//
+//        spinner.onItemSelectedListener = this
+//
+//        var arrayAdapter = ArrayAdapter.createFromResource(
+//            this,
+//            R.array.countries,
+//            android.R.layout.simple_spinner_item
+//        )
+//
+//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        spinner.adapter = arrayAdapter
 
-        spinner.onItemSelectedListener = this
+        listView = findViewById(R.id.listView)
 
-        var arrayAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.countries,
-            android.R.layout.simple_spinner_item
-        )
+        var countryList = resources.getStringArray(R.array.countries)
 
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = arrayAdapter
+        var arrayAdapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,countryList)
+
+        listView.adapter = arrayAdapter
+        
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val countryName: String = parent.getItemAtPosition(position).toString()
+            Toast.makeText(applicationContext, "You Selected the "+countryName, Toast.LENGTH_LONG).show()
+        }
 
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        countryResult.text = parent!!.getItemAtPosition(position).toString()
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-
-    }
+//    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//        countryResult.text = parent!!.getItemAtPosition(position).toString()
+//    }
+//
+//    override fun onNothingSelected(p0: AdapterView<*>?) {
+//
+//    }
 }
