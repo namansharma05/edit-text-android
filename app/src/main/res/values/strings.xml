@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">EditTexts</string>
+    <string-array name="countries">
+        <item>England</item>
+        <item>Neitherlands</item>
+        <item>Belgium</item>
+        <item>Germany</item>
+        <item>Finland</item>
+    </string-array>
 </resources>
